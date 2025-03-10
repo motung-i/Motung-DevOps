@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: conner-backend
+  namespace: conner
+spec:
+  selector:
+    app: conner-backend
+  ports:
+    - port: 80
+      targetPort: 8080
+  type: ClusterIP

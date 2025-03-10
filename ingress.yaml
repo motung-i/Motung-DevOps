@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: conner-backend-ingress
+  namespace: conner
+spec:
+  ingressClassName: "traefik"
+  rules:
+    - host: conner-api.mya.ong
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: conner-backend
+                port:
+                  number: 80
