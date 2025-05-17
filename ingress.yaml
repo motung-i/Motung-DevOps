@@ -3,8 +3,12 @@ kind: Ingress
 metadata:
   name: conner-backend-ingress
   namespace: conner
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: HTTP
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
-  ingressClassName: "traefik"
+  ingressClassName: nginx
   rules:
     - host: conner-api.mya.ong
       http:
@@ -16,3 +20,7 @@ spec:
                 name: conner-backend
                 port:
                   number: 80
+  tls:
+    - hosts:
+        - conner-api.mya.ong
+      secretName: conner-backend-tls
