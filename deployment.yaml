@@ -32,10 +32,10 @@ spec:
               memory: 512Mi
           startupProbe:
             httpGet:
-              path: /
+              path: /health
               port: 8080
             failureThreshold: 30
-            periodSeconds: 5s
+            periodSeconds: 5
           readinessProbe:
             httpGet:
               path: /
